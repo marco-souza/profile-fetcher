@@ -4,4 +4,7 @@ Aplicação simples para buscar dados da API na github para popular uma lista de
 
 A ideia desse demo é aprender sobre como carregar dados de uma API externa para carregar sua página.
 
-Vídeo: <https://youtu.be/VJCmKmeN0eY>
+## Links
+
+- **Vídeo**: <https://youtu.be/VJCmKmeN0eY>
+- **Site**: <https://marco-souza.github.io/profile-fetcher/>
