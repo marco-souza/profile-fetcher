@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Profile Fetcher</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Profile Fetcher</h1>
+      <!-- Input -->
+      <div class="input-group mb-3">
+        <input
+          id="input"
+          type="text"
+          class="form-control"
+          placeholder="Github's username"
+          aria-label="Github's username"
+          aria-describedby="button-addon2"
+          required
+        />
+        <div class="input-group-append">
+          <button
+            onclick="onClickLoadButton()"
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+          >
+            Carregar
+          </button>
+        </div>
+      </div>
+
+      <!-- Show loader when loading  -->
+      <div id="loader"></div>
+
+      <!-- List of results -->
+      <div class="container">
+        <div id="results" class="row"></div>
+      </div>
+    </div>
+  </body>
+
+  <!-- ⭐️ Best Practice: Carregue JS no fim do arquivo -->
+  <script src="./script.js"></script>
+</html>
