@@ -13,11 +13,11 @@ function hideLoader() {
 function addCard(name, description, photo, link) {
   results.innerHTML += `
   <div class="col-md-4 col-md-offset-2 col-sm-12  col-sm-offset-2">
-    <img height="240" src="https://www.whittierfirstday.org/wp-content/uploads/default-user-image-e1501670968910.png" class="card-img-top">
+    <img height="240" src="${photo}" class="card-img-top">
     <div class="card-body">
       <h5 class="card-title">${name}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <p class="card-text">${description}</p>
+      <a href="${link}" class="btn btn-primary">My Profile</a>
     </div>
   </div>
   `
@@ -30,12 +30,30 @@ function onClickLoadButton() {
   if (!username) return
 
   showLoader()
-  // TODO: remove
-  setTimeout(() => {
-    addCard(username)
-    hideLoader()
-  }, 3000)
-}
+
+  fetch(`https://api.github.com/users/${username}`)
+    .then(response => {
+      const SUCCESS = 200
+      if (response.status !== SUCCESS) {
+        throw new Error(response)
+      }
+      return response.json()
+    })
+    .then(data => {
+      addCard(
+        data.name || data.login,
+        data.bio,
+        data.avatar_url,
+        data.html_url,
+      )
+    })
+    .catch(error => {
+      alert(error)
+    })
+    .finally(() => {
+      hideLoader()
+    })
+  }
 
 
 // start application
