@@ -23,7 +23,7 @@ function addCard(name, description, photo, link) {
   `
 }
 
-function onClickLoadButton() {
+async function onClickLoadButton() {
   const username = input.value
   input.value = ''
 
@@ -31,9 +31,26 @@ function onClickLoadButton() {
 
   showLoader()
 
+  const SUCCESS = 200
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`)
+    if (response.status !== SUCCESS) throw new Error(response)
+    const data = await response.json()
+
+    addCard(
+      data.name || data.login,
+      data.bio,
+      data.avatar_url,
+      data.html_url,
+    )
+  } catch(error) {
+    alert(error)
+  } finally {
+    hideLoader()
+  }
+
   fetch(`https://api.github.com/users/${username}`)
     .then(response => {
-      const SUCCESS = 200
       if (response.status !== SUCCESS) {
         throw new Error(response)
       }
